@@ -16,8 +16,6 @@ This repository consists of two folders:
 
 ## How to use
 
-Firstly, clone this repository to your desired location.
-
 By default, `mrt_scores.csv` in the `scores` folder contains the scores for the following stations: 
 
 |Line|Station(s)|
