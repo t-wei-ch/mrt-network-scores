@@ -16,7 +16,7 @@ This repository consists of two folders:
 
 ## How to use
 
-By default, `mrt_scores.csv` in the `scores` folder contains the scores for the following stations: 
+By default, `mrt_scores.csv` in the `scores` folder contains the scores with the following target stations: 
 
 |Line|Station(s)|
 |---|---|
