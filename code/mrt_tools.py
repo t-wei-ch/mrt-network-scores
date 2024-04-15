@@ -39,14 +39,6 @@ def filter_dict(dic, lst_of_keys):
 
     return filtered_dic
 
-def exclude_cols(df, cols):
-    '''Returns a DataFrame with columns from `cols` excluded.
-    
-    Parameters:
-    - `df`: The DataFrame to be operated on
-    - `cols`: List of names of columns to exclude'''
-    return df[df.columns[~df.columns.isin(cols)]].copy()
-
 ###################################################
 
 
@@ -236,13 +228,8 @@ def shortest_mrt_station_path(start_station, end_station):
 # test case
 # shortest_mrt_station_path('Orchard', 'Bukit Batok')
 
-city_center_stations = ['Raffles Place', 'City Hall', 'Marina Bay', 'Outram Park',
-                        'Tanjong Pagar', 'Telok Blangah', 'Harbourfront', 'Bayfront',
-                        'Promenade', 'Esplanade', 'Marina Bay', 'Telok Ayer', 'Downtown', 
-                        'Maxwell', 'Shenton Way']
-
-def shortest_route_to_city(start_point, output='route'):
-    '''Finds the shortest route from an MRT station `start_point` to a "city center" station.
+def shortest_route_to_targets(target_stations, start_point, output='route'):
+    '''Finds the shortest route from an MRT station `start_point` to a station in `target_stations`.
     
     Parameters
     ----------
@@ -259,10 +246,10 @@ def shortest_route_to_city(start_point, output='route'):
     # helper list
     current_routes = []
 
-    for city_station in city_center_stations:
+    for target_station in target_stations:
 
         # routes to current city station
-        current_routes = shortest_mrt_station_path(start_point, city_station)
+        current_routes = shortest_mrt_station_path(start_point, target_station)
 
         # appends the current routes if possible_routes is empty, or there is a score tie
         if not possible_routes or (len(current_routes[0]) == best_score):
@@ -290,6 +277,18 @@ def shortest_route_to_city(start_point, output='route'):
 ##################################################
 
 # test cases
-# shortest_route_to_city('Orchard', output='both')
+# shortest_route_to_targets('Orchard', output='both')
 
-mrt_scores_per_station = {station: shortest_route_to_city(station, output='score') for station in mrt_stations}
+def get_mrt_scores(target_stations: list[str]):
+    '''
+    Returns a dictionary of `station`-`score` key-value pairs, 
+    where `score` is the minimal number of stations from `station` to a station in `target_stations`, 
+    among all stations in `target_stations`.
+
+    Parameters
+    ---
+    - `target_stations`: A list of MRT stations
+    '''
+
+    mrt_scores_per_station = {station: shortest_route_to_targets(target_stations, station, output='score') for station in mrt_stations}
+    return mrt_scores_per_station
