@@ -7,6 +7,7 @@ This is a tool that uses [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Di
 For the purposes of modelling the inconvenience of transiting and/or train waiting times, transits between different lines at the same stations count as an additional station for the purposes of computing the score.
 
 The score of a `station` is defined to be the minimal number of stations (including transits) from `station` to any station in `target_stations`, and the MRT network being used is up-to-date as of 16 April 2024.
+This means that the minimum possible score is achieved if a station is in `target_stations`, where its score will be 0.
 
 ## Structure
 
