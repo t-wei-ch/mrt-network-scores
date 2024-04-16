@@ -1,4 +1,4 @@
-# A Tool for Computing Distance to Target Stations in the Singapore MRT Network
+# A Tool for Computing Graph Distance to Target Stations in the Singapore MRT Network
 
 ## About
 
